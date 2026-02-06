@@ -92,12 +92,12 @@ $userInfo = json_decode($userInfoResponse, true);
 if (isset($userInfo['email']) && !empty($userInfo['email'])) {
     $myts = \MyTextSanitizer::getInstance();
     
-    // Create username from email
-    list($id, $emailDomain) = explode('@', $userInfo['email']);
+    // Create username from email (discard domain portion)
+    list($id, ) = explode('@', $userInfo['email']);
     $uname = $id . '_auth0';
     
-    // Get user information
-    $name = isset($userInfo['name']) ? $myts->addSlashes($userInfo['name']) : $myts->addSlashes($userInfo['nickname'] ?? $userInfo['email']);
+    // Get user information - try name, fallback to nickname, then email
+    $name = $myts->addSlashes($userInfo['name'] ?? $userInfo['nickname'] ?? $userInfo['email']);
     $email = $userInfo['email'];
     $bio = $url = $from = $sig = $occ = $msnm = $user_avatar = $aim = $yim = '';
     
