@@ -410,8 +410,8 @@ class Tools
         $clientSecret = $TadLoginModuleConfig['auth0_client_secret'];
         $redirectUri = XOOPS_URL . '/modules/tad_login/auth0_callback.php';
 
-        // Generate state parameter for security
-        $state = bin2hex(random_bytes(16));
+        // Generate state parameter for security (using 32 bytes = 64 hex chars for strong CSRF protection)
+        $state = bin2hex(random_bytes(32));
         $_SESSION['auth0_state'] = $state;
 
         // Build authorization URL

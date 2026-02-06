@@ -9,8 +9,14 @@ if (!class_exists('XoopsModules\Tad_login\Tools')) {
 }
 
 // Verify state to prevent CSRF attacks
-if (!isset($_GET['state']) || !isset($_SESSION['auth0_state']) || $_GET['state'] !== $_SESSION['auth0_state']) {
-    die('Invalid state parameter');
+if (!isset($_GET['state'])) {
+    die('Missing state parameter');
+}
+if (!isset($_SESSION['auth0_state'])) {
+    die('Missing state in session - please try logging in again');
+}
+if ($_GET['state'] !== $_SESSION['auth0_state']) {
+    die('State parameter mismatch - possible CSRF attack');
 }
 
 // Clear state
@@ -23,9 +29,10 @@ if (!isset($_GET['code'])) {
 $code = $_GET['code'];
 
 // Get Auth0 configuration
-$domain = $xoopsModuleConfig['auth0_domain'];
-$clientId = $xoopsModuleConfig['auth0_client_id'];
-$clientSecret = $xoopsModuleConfig['auth0_client_secret'];
+$TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
+$domain = $TadLoginModuleConfig['auth0_domain'];
+$clientId = $TadLoginModuleConfig['auth0_client_id'];
+$clientSecret = $TadLoginModuleConfig['auth0_client_secret'];
 $redirectUri = XOOPS_URL . '/modules/tad_login/auth0_callback.php';
 
 // Exchange code for access token
@@ -43,18 +50,20 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($tokenData));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 if ($httpCode !== 200) {
-    die('Failed to exchange code for token');
+    die('Failed to exchange code for token. HTTP Status: ' . $httpCode . '. Response: ' . htmlspecialchars($response));
 }
 
 $tokenResponse = json_decode($response, true);
 if (!isset($tokenResponse['access_token'])) {
-    die('No access token received');
+    die('No access token received. Response: ' . htmlspecialchars($response));
 }
 
 $accessToken = $tokenResponse['access_token'];
@@ -66,13 +75,15 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Authorization: Bearer {$accessToken}",
 ]);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
 $userInfoResponse = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 if ($httpCode !== 200) {
-    die('Failed to get user info');
+    die('Failed to get user info. HTTP Status: ' . $httpCode . '. Response: ' . htmlspecialchars($userInfoResponse));
 }
 
 $userInfo = json_decode($userInfoResponse, true);
@@ -82,7 +93,7 @@ if (isset($userInfo['email']) && !empty($userInfo['email'])) {
     $myts = \MyTextSanitizer::getInstance();
     
     // Create username from email
-    list($id, $domain) = explode('@', $userInfo['email']);
+    list($id, $emailDomain) = explode('@', $userInfo['email']);
     $uname = $id . '_auth0';
     
     // Get user information
@@ -97,5 +108,5 @@ if (isset($userInfo['email']) && !empty($userInfo['email'])) {
     
     Tools::login_xoops($uname, $name, $email, '', '', $url, $from, $sig, $occ, $bio, $aim, $yim, $msnm, $user_avatar);
 } else {
-    die('No email address found in Auth0 user profile');
+    die('No email address found in Auth0 user profile. Please ensure your Auth0 application requests the email scope and that your email is verified in your Auth0 profile.');
 }
