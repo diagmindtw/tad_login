@@ -41,6 +41,10 @@ switch ($op) {
         $_SESSION['auth_method'] = 'line';
         Tools::line_login();
         break;
+    case 'auth0':
+        $_SESSION['auth_method'] = 'auth0';
+        Tools::auth0_login();
+        break;
 
     case 'tn':
         $_SESSION['auth_method'] = 'tn';

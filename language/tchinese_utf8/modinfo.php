@@ -12,6 +12,7 @@ define('_MI_TADLOGIN_ADMENU4', '教育雲認證設定');
 define('_MI_TADLOGIN_ADMENU5', '綁定密碼管理');
 define('_MI_TADLOGIN_ADMENU6', 'Line認證設定說明');
 define('_MI_TADLOGIN_ADMENU7', 'OIDC沿用OpenID帳號');
+define('_MI_TADLOGIN_ADMENU8', 'Auth0認證設定說明');
 
 define('_MI_TADLOGIN_DESC', '加入快速登入的機制');
 define('_MI_TADLOGIN_BNAME1', '快速登入');
@@ -41,6 +42,13 @@ define('_MI_TADLOGIN_LINE_ID', 'Line 的 Channel ID');
 define('_MI_TADLOGIN_LINE_ID_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel ID」');
 define('_MI_TADLOGIN_LINE_SECRET', 'Line 的 Channel Secret');
 define('_MI_TADLOGIN_LINE_SECRET_DESC', '至 https://developers.line.biz/console/channel/new?type=line-login 建立一個  channel，並取得其「Channel Secret」');
+
+define('_MI_TADLOGIN_AUTH0_DOMAIN', 'Auth0 的 Domain');
+define('_MI_TADLOGIN_AUTH0_DOMAIN_DESC', '至 https://auth0.com 建立一個應用程式，並取得其「Domain」（例如：your-tenant.auth0.com）');
+define('_MI_TADLOGIN_AUTH0_CLIENT_ID', 'Auth0 的 Client ID');
+define('_MI_TADLOGIN_AUTH0_CLIENT_ID_DESC', '至 https://auth0.com 建立一個應用程式，並取得其「Client ID」');
+define('_MI_TADLOGIN_AUTH0_CLIENT_SECRET', 'Auth0 的 Client Secret');
+define('_MI_TADLOGIN_AUTH0_CLIENT_SECRET_DESC', '至 https://auth0.com 建立一個應用程式，並取得其「Client Secret」');
 
 define('_MI_TADLOGIN_BIND_OPENID', '登入後是否導向到綁定畫面');
 define('_MI_TADLOGIN_BIND_OPENID_DESC', '一般可以設「否」，但若是未來 OpenID 不再提供服務的縣市建議選「是」');

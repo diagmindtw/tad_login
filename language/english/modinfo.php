@@ -12,6 +12,7 @@ define('_MI_TADLOGIN_ADMENU4', 'Education cloud authentication settings');
 define('_MI_TADLOGIN_ADMENU5', 'Password management');
 define('_MI_TADLOGIN_ADMENU6', 'Line Authentication Setting Description');
 define('_MI_TADLOGIN_ADMENU7', 'OIDC follows the OpenID account number');
+define('_MI_TADLOGIN_ADMENU8', 'Auth0 Authentication Setting Description');
 
 define('_MI_TADLOGIN_DESC', 'Join FB and other fast login mechanism');
 define('_MI_TADLOGIN_BNAME1', 'Tad Login');
@@ -52,6 +53,13 @@ define('_MI_TADLOGIN_LINE_ID', 'Channel ID of Line');
 define('_MI_TADLOGIN_LINE_ID_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel ID"');
 define('_MI_TADLOGIN_LINE_SECRET', 'Channel Secret of Line');
 define('_MI_TADLOGIN_LINE_SECRET_DESC', 'Create a channel to https://developers.line.biz/console/channel/new?type=line-login and get its "Channel Secret"');
+
+define('_MI_TADLOGIN_AUTH0_DOMAIN', 'Auth0 Domain');
+define('_MI_TADLOGIN_AUTH0_DOMAIN_DESC', 'Go to https://auth0.com, create an application, and get its "Domain" (e.g., your-tenant.auth0.com)');
+define('_MI_TADLOGIN_AUTH0_CLIENT_ID', 'Auth0 Client ID');
+define('_MI_TADLOGIN_AUTH0_CLIENT_ID_DESC', 'Go to https://auth0.com, create an application, and get its "Client ID"');
+define('_MI_TADLOGIN_AUTH0_CLIENT_SECRET', 'Auth0 Client Secret');
+define('_MI_TADLOGIN_AUTH0_CLIENT_SECRET_DESC', 'Go to https://auth0.com, create an application, and get its "Client Secret"');
 
 define('_MI_TADLOGIN_BIND_OPENID', 'Do you navigate to the binding screen after login');
 define('_MI_TADLOGIN_BIND_OPENID_DESC', 'Generally it can be set to \'No\', but we recommend to select \'Yes\' if OpenID is no longer available in the future');
