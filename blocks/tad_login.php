@@ -29,6 +29,8 @@ function tad_login($options = '')
                 $url = Tools::google_login('return');
             } elseif ('line' === $openid) {
                 $url = Tools::line_login('return');
+            } elseif ('auth0' === $openid) {
+                $url = Tools::auth0_login('return');
             } else {
                 $url = XOOPS_URL . "/modules/tad_login/index.php?login&op={$openid}";
             }
@@ -41,6 +43,12 @@ function tad_login($options = '')
                 $auth_method[$i]['text'] = constant('_' . mb_strtoupper(Tools::$all_oidc[$openid]['tail'])) . ' OIDC ' . _MB_TADLOGIN_LOGIN;
             } elseif (in_array($openid, $oidc_array2)) {
                 $auth_method[$i]['text'] = constant('_' . mb_strtoupper(Tools::$all_oidc[$openid]['tail'])) . _MB_TADLOGIN_LOGIN;
+            } elseif ('google' === $openid) {
+                $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' ' . _MB_TADLOGIN_LOGIN;
+            } elseif ('line' === $openid) {
+                $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' ' . _MB_TADLOGIN_LOGIN;
+            } elseif ('auth0' === $openid) {
+                $auth_method[$i]['text'] = 'Auth0 ' . _MB_TADLOGIN_LOGIN;
             } else {
                 $auth_method[$i]['text'] = constant('_' . mb_strtoupper($openid)) . ' OpenID ' . _MB_TADLOGIN_LOGIN;
             }
