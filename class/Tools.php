@@ -389,6 +389,48 @@ class Tools
         }
     }
 
+    //Auth0登入
+    public static function auth0_login($mode = '')
+    {
+        global $xoopsTpl, $xoopsUser, $xoopsModuleConfig;
+
+        if ($xoopsUser) {
+            header('location:' . XOOPS_URL . '/user.php');
+            exit;
+        }
+
+        if (!isset($xoopsModuleConfig['auth0_domain'])) {
+            $TadLoginModuleConfig = Utility::getXoopsModuleConfig('tad_login');
+        } else {
+            $TadLoginModuleConfig = $xoopsModuleConfig;
+        }
+
+        $domain = $TadLoginModuleConfig['auth0_domain'];
+        $clientId = $TadLoginModuleConfig['auth0_client_id'];
+        $clientSecret = $TadLoginModuleConfig['auth0_client_secret'];
+        $redirectUri = XOOPS_URL . '/modules/tad_login/auth0_callback.php';
+
+        // Generate state parameter for security
+        $state = bin2hex(random_bytes(16));
+        $_SESSION['auth0_state'] = $state;
+
+        // Build authorization URL
+        $authUrl = sprintf(
+            'https://%s/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=openid%%20profile%%20email&state=%s',
+            $domain,
+            urlencode($clientId),
+            urlencode($redirectUri),
+            $state
+        );
+
+        if ('return' === $mode) {
+            return $authUrl;
+        } else {
+            header("location: $authUrl");
+            exit;
+        }
+    }
+
     //搜尋有無相同username資料
     public static function login_xoops($uname = '', $name = '', $email = '', $SchoolCode = '', $JobName = '', $url = '', $from = '', $sig = '', $occ = '', $bio = '', $aim = '', $yim = '', $msnm = '', $user_avatar = 'avatars/blank.gif')
     {

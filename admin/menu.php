@@ -31,6 +31,11 @@ $adminmenu = [
         'icon' => 'images/line.png',
     ],
     [
+        'title' => _MI_TADLOGIN_ADMENU8,
+        'link' => 'admin/auth0.php',
+        'icon' => 'images/admin/auth0.png',
+    ],
+    [
         'title' => _MI_TAD_ADMIN_ABOUT,
         'link' => 'admin/about.php',
         'icon' => 'images/admin/about.png',

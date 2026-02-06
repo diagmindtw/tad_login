@@ -88,3 +88,12 @@ define('_MA_TADLOGIN_ABOUT_CHANGE_UID_DESC', '<ol><li>As more and more counties 
 define('_MA_TADLOGIN_ABOUT_CHANGE_UID_TODO', '<ol><li>We suggest searching with your real name first</li><li>then check the two accounts to send</li><li>This will swap the uid of the two accounts</li><li>Only the accounts with OpenID or OIDC will be listed at the bottom</li></ol>.');
 
 define('_MA_TADLOGIN_CHANGE_OK', 'Successfully executed uid swap! (%s = %s, %s = %s)');
+
+define('_MA_TADLOGIN_AUTH0_STEP1', "<h1>【Step 1】Create Auth0 Application</h1><p>Please go to <a href='https://auth0.com' target='_blank'>https://auth0.com</a> and login or sign up, then go to Dashboard</p>");
+define('_MA_TADLOGIN_AUTH0_STEP2', '<h1>【Step 2】Create Application</h1><p>Click "Applications" → "Applications" → "Create Application"</p>');
+define('_MA_TADLOGIN_AUTH0_STEP3', '<h1>【Step 3】Select Application Type</h1><p>Enter the application name and select "Regular Web Applications"</p>');
+define('_MA_TADLOGIN_AUTH0_STEP4', '<h1>【Step 4】Configure Callback URL</h1><p>In the "Allowed Callback URLs" field, enter "<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/auth0_callback.php</span>"</p>');
+define('_MA_TADLOGIN_AUTH0_STEP5', '<h1>【Step 5】Configure Logout URL</h1><p>In the "Allowed Logout URLs" field, enter "<span style="color:blue;">' . XOOPS_URL . '</span>"</p>');
+define('_MA_TADLOGIN_AUTH0_STEP6', '<h1>【Step 6】Copy Authentication Information</h1><p>Copy the following information from the "Basic Information" section:<ul><li>Domain (e.g., your-tenant.auth0.com)</li><li>Client ID</li><li>Client Secret</li></ul></p>');
+define('_MA_TADLOGIN_AUTH0_STEP7', '<h1>【Step 7】Paste to <a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">Preferences</a></h1><p>Paste the above information into the corresponding preference fields and add Auth0 to "Select authentication method"</p>');
+

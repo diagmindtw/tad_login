@@ -88,3 +88,12 @@ define('_MA_TADLOGIN_ABOUT_CHANGE_UID_DESC', '<ol><li>因越來越多縣市停�
 define('_MA_TADLOGIN_ABOUT_CHANGE_UID_TODO', '<ol><li>建議先用真實姓名搜尋</li><li>接著勾選兩個帳號送出</li><li>如此會互換這兩個帳號的uid</li><li>底下只會列出用OpenID或OIDC登入帳號</li></ol>');
 
 define('_MA_TADLOGIN_CHANGE_OK', '已成功執行 uid 互換！（%s = %s、%s = %s）');
+
+define('_MA_TADLOGIN_AUTH0_STEP1', "<h1>【步驟 1】建立 Auth0 應用程式</h1><p>請連至<a href='https://auth0.com' target='_blank'>https://auth0.com</a>登入或註冊帳號，然後前往 Dashboard</p>");
+define('_MA_TADLOGIN_AUTH0_STEP2', '<h1>【步驟 2】建立應用程式</h1><p>點擊「Applications」→「Applications」→「Create Application」</p>');
+define('_MA_TADLOGIN_AUTH0_STEP3', '<h1>【步驟 3】選擇應用程式類型</h1><p>輸入應用程式名稱，並選擇「Regular Web Applications」</p>');
+define('_MA_TADLOGIN_AUTH0_STEP4', '<h1>【步驟 4】設定回調 URL</h1><p>在「Allowed Callback URLs」欄位中，輸入「<span style="color:blue;">' . XOOPS_URL . '/modules/tad_login/auth0_callback.php</span>」</p>');
+define('_MA_TADLOGIN_AUTH0_STEP5', '<h1>【步驟 5】設定登出 URL</h1><p>在「Allowed Logout URLs」欄位中，輸入「<span style="color:blue;">' . XOOPS_URL . '</span>」</p>');
+define('_MA_TADLOGIN_AUTH0_STEP6', '<h1>【步驟 6】複製認證資訊</h1><p>從「Basic Information」區塊中複製以下資訊：<ul><li>Domain（例如：your-tenant.auth0.com）</li><li>Client ID</li><li>Client Secret</li></ul></p>');
+define('_MA_TADLOGIN_AUTH0_STEP7', '<h1>【步驟 7】到<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=' . $mid . '" target="_blank">偏好設定</a>貼上認證資訊</h1><p>將上述資訊貼到對應的偏好設定欄位中，並將「欲使用的認證方式」加上 Auth0</p>');
+

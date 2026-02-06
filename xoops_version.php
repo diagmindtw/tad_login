@@ -118,6 +118,30 @@ $modversion['config'] = [
         'default' => '',
     ],
     [
+        'name' => 'auth0_domain',
+        'title' => '_MI_TADLOGIN_AUTH0_DOMAIN',
+        'description' => '_MI_TADLOGIN_AUTH0_DOMAIN_DESC',
+        'formtype' => 'textbox',
+        'valuetype' => 'text',
+        'default' => '',
+    ],
+    [
+        'name' => 'auth0_client_id',
+        'title' => '_MI_TADLOGIN_AUTH0_CLIENT_ID',
+        'description' => '_MI_TADLOGIN_AUTH0_CLIENT_ID_DESC',
+        'formtype' => 'textbox',
+        'valuetype' => 'text',
+        'default' => '',
+    ],
+    [
+        'name' => 'auth0_client_secret',
+        'title' => '_MI_TADLOGIN_AUTH0_CLIENT_SECRET',
+        'description' => '_MI_TADLOGIN_AUTH0_CLIENT_SECRET_DESC',
+        'formtype' => 'textbox',
+        'valuetype' => 'text',
+        'default' => '',
+    ],
+    [
         'name' => 'auth_method',
         'title' => '_MI_TADLOGIN_AUTH_METHOD',
         'description' => '_MI_TADLOGIN_AUTH_METHOD_DESC',
@@ -127,6 +151,7 @@ $modversion['config'] = [
         'options' => [
             sprintf(_TADLOGIN_LOGIN, _GOOGLE) => 'google',
             sprintf(_TADLOGIN_LOGIN, _LINE) => 'line',
+            sprintf(_TADLOGIN_LOGIN, 'Auth0') => 'auth0',
             sprintf(_TADLOGIN_LOGIN, _KL . 'OpenID') => 'kl',
             sprintf(_TADLOGIN_LOGIN, _TP . 'OpenID') => 'tp',
             sprintf(_TADLOGIN_LOGIN, _NTPC . 'OpenID') => 'ntpc',
